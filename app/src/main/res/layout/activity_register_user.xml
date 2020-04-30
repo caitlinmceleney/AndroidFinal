@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controllers.RegisterUserActivity">
+
+    <EditText
+        android:id="@+id/newUserNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="129dp"
+        android:ems="10"
+        android:hint="Enter a Username"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/enterPasswordTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:ems="10"
+        android:hint="Enter a Password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/newUserNameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/newUserNameTxt" />
+
+    <EditText
+        android:id="@+id/passwordCheckTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:ems="10"
+        android:hint="Reenter the Password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/enterPasswordTxt"
+        app:layout_constraintTop_toBottomOf="@+id/enterPasswordTxt" />
+
+    <Button
+        android:id="@+id/createAccountBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="37dp"
+        android:onClick="createAccount"
+        android:text="Create New Account"
+        app:layout_constraintStart_toStartOf="@+id/passwordCheckTxt"
+        app:layout_constraintTop_toBottomOf="@+id/passwordCheckTxt" />
+
+    <Button
+        android:id="@+id/goBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:onClick="goBack"
+        android:text="@android:string/cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAccountBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
