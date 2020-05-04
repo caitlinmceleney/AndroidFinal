@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controllers.PetPage"></activity>
+        <activity android:name=".Controllers.PetPickerActivity"></activity>
+        <activity android:name=".Controllers.PetPage" />
         <activity android:name=".Controllers.RegisterUserActivity" />
         <activity android:name=".Controllers.LoginActivity">
             <intent-filter>

@@ -1,22 +1,50 @@
 package com.example.androidfinalproject.Controllers
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.androidfinalproject.Models.User
 import com.example.androidfinalproject.R
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class LoginActivity : AppCompatActivity() {
-var successfulLogin = true;
+var successfulLogin = true
     var username = ""
+//    var prefs = getSharedPreferences("name", MODE_PRIVATE);
+//    var isLoggedIn = false
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        if(isLoggedIn){
+//            var username = prefs.getString("username",username)
+//            val myIntent = Intent(applicationContext, PetPage::class.java)
+//            myIntent.putExtra("Username", username)
+//            startActivity(myIntent)
+//            return;
+//        }
 //        updateView()
+    }
+
+    override fun onResume()
+    {
+        super.onResume()
+//        if(isLoggedIn){
+//            var username = prefs.getString("username",username)
+//            val myIntent = Intent(applicationContext, PetPage::class.java)
+//            myIntent.putExtra("Username", username)
+//            startActivity(myIntent)
+//
+//        }
+
     }
 
     inner class loginAsync: AsyncTask<User, Unit, Unit>() {
@@ -37,9 +65,27 @@ var successfulLogin = true;
                 usernameTxt.text.clear()
                 passwordTxt.text.clear()
             }else{
-                val myIntent = Intent(applicationContext, PetPage::class.java)
-                myIntent.putExtra("Username", username)
-                startActivity(myIntent)
+                val petDb = PetDatabaseManager(applicationContext)
+                if(petDb.hasPet(username)){
+//                    val editor =
+//                        getSharedPreferences("name", Context.MODE_PRIVATE).edit()
+//                    editor.putString("username", username)
+//                    editor.putBoolean("isLoggedIn", true)
+//                    editor.apply()
+                    val myIntent = Intent(applicationContext, PetPage::class.java)
+                    myIntent.putExtra("Username", username)
+                    startActivity(myIntent)
+                }else{
+                    val editor =
+                        getSharedPreferences("name", Context.MODE_PRIVATE).edit()
+                    editor.putString("username", username)
+                    editor.putBoolean("isLoggedIn", true)
+                    editor.apply()
+                    val myIntent = Intent(applicationContext, PetPickerActivity::class.java)
+                    myIntent.putExtra("Username", username)
+                    startActivity(myIntent)
+                }
+
             }
 
         }

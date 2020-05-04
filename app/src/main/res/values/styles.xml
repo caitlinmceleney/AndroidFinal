@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CatBtn" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/catn_btn</item>
+    </style>
+
+    <style name="DogBtn" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:button">@drawable/dog_btn</item>
+    </style>
+
 </resources>
