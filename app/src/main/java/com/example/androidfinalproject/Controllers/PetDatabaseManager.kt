@@ -40,7 +40,7 @@ class PetDatabaseManager(context: Context):
 
     fun insert(petToInsert: Pet){
         val db = this.writableDatabase
-        val insertString = "INSERT INTO $TABLE_PETS VALUES ('${petToInsert.getOwnerName()}', '${petToInsert.getName()}', '${petToInsert.getType()}')"
+        val insertString = "INSERT INTO $TABLE_PETS VALUES ('${petToInsert.getOwnerName()}', '${petToInsert.getName()}', '${petToInsert.getType()}' , 100, 100, 100)"
         db.execSQL(insertString)
     }
 

@@ -10,6 +10,6 @@ class PetPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet_page)
-        val username = intent.getStringExtra("Username")
+        //val username = intent.getStringExtra("Username")
     }
 }
