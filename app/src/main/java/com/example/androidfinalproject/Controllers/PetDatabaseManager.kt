@@ -65,4 +65,31 @@ class PetDatabaseManager(context: Context):
         return false
     }
 
+    fun getPet(username:String): Pet{
+        val db = this.writableDatabase
+        var thisUserName = ""
+        var thisPetName = ""
+        var thisPetType = ""
+        var thisHappiness = 0
+        var thisHunger = 0
+        var thisCleanliness = 0
+        var getPetQuery = "SELECT * FROM $TABLE_PETS WHERE ${OWNERNAME} = '${username}'"
+        var c = db.rawQuery(getPetQuery, null)
+        if(c.moveToFirst()){
+            do{
+                thisUserName = c.getString(0)
+                thisPetName = c.getString(1)
+                thisPetType = c.getString(2)
+                thisHappiness = c.getInt(3)
+                thisHunger = c.getInt(4)
+                thisCleanliness = c.getInt(5)
+            }while(c.moveToNext())
+            var thisPet = Pet(thisPetType, thisPetName, thisUserName, thisHappiness, thisHunger, thisCleanliness)
+            return thisPet
+        }else{
+            var thisPet = Pet(thisPetType, thisPetName, thisUserName, thisHappiness, thisHunger, thisCleanliness)
+            return thisPet
+        }
+    }
+
 }
