@@ -16,6 +16,15 @@ class Pet (petType: String, thisPetName: String, thisOwnerName: String, thisHapp
     fun getName():String{
         return petName
     }
+    fun getHappiness():Int{
+        return happiness
+    }
+    fun getHunger():Int{
+        return hunger
+    }
+    fun getCleanliness():Int{
+        return cleanliness
+    }
 
     fun getOwnerName():String{
         return ownerName
@@ -35,15 +44,24 @@ class Pet (petType: String, thisPetName: String, thisOwnerName: String, thisHapp
 
 
     fun decrementHunger(){
-        hunger-=10
+        hunger-=(0..10).random()
+        if(hunger < 0){
+            hunger = 0
+        }
     }
 
     fun decrementCleanliness(){
-        cleanliness -= 1
+        cleanliness -= (0..10).random()
+        if(cleanliness < 0){
+            cleanliness = 0
+        }
     }
 
     fun decrementHappiness() {
-        happiness -= 10
+        happiness -= (0..10).random()
+        if(happiness < 0){
+            happiness = 0
+        }
     }
 
     fun passTime(){
