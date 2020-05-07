@@ -1,20 +1,16 @@
 package com.example.androidfinalproject.Controllers
 
-import android.animation.ValueAnimator.INFINITE
-import android.annotation.SuppressLint
-import android.graphics.LinearGradient
+
 import android.graphics.drawable.AnimationDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.view.animation.LayoutAnimationController
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.androidfinalproject.Models.Pet
 import com.example.androidfinalproject.R
-
 import kotlinx.android.synthetic.main.activity_pet_page.*
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -33,22 +29,30 @@ class PetPage : AppCompatActivity() {
         myDb.getPet(username)
         thisPet = myDb.getPet(username)
 
+        poopOne.visibility = View.INVISIBLE
+        poopTwo.visibility = View.INVISIBLE
+        poop3.visibility = View.INVISIBLE
+
 
         petNameTxt.text = thisPet.getName()
         happinessProgress.progress = thisPet.getHappiness()
         hungerProgress.progress = thisPet.getHunger()
-        cleanlinessProgress.progress = thisPet.getCleanliness()
+        checkCleanliness()
+        petSprite.setOnClickListener{
+            petPet()
+        }
 
         Timer().scheduleAtFixedRate(timerTask{
-
             thisPet.decrementHappiness()
             thisPet.decrementCleanliness()
             thisPet.decrementHunger()
             happinessProgress.progress = thisPet.getHappiness()
             hungerProgress.progress = thisPet.getHunger()
-            cleanlinessProgress.progress = thisPet.getCleanliness()
+            Handler(Looper.getMainLooper()).post(Runnable { checkCleanliness() })
+
+            //cleanlinessProgress.progress = thisPet.getCleanliness()
             Log.e("Timer went off", thisPet.getHappiness().toString())
-        }, 2000, 15000)
+        }, 2000, 10000)
 
         if(thisPet.getType() == "Cat"){
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
@@ -59,10 +63,46 @@ class PetPage : AppCompatActivity() {
         }
     }
 
+    private fun checkCleanliness(){
+
+        var cleanliness = thisPet.getCleanliness()
+
+        if(cleanliness>=70){
+            Log.e("Cleanliness in 100..70 ", cleanliness.toString())
+            poopOne.visibility = View.INVISIBLE
+            poopTwo.visibility = View.INVISIBLE
+            poop3.visibility = View.INVISIBLE
+        }
+        if(cleanliness<=69 && cleanliness>=45){
+            Log.e("Cleanliness in 69..45 ", cleanliness.toString())
+            poopOne.visibility = View.VISIBLE
+            poopTwo.visibility = View.INVISIBLE
+            poop3.visibility = View.INVISIBLE
+        }
+        if(cleanliness<45 && cleanliness >= 15){
+            Log.e("Cleanliness in 44..15", cleanliness.toString())
+            poopOne.visibility = View.VISIBLE
+            poopTwo.visibility = View.VISIBLE
+            poop3.visibility = View.INVISIBLE
+        }
+        if(cleanliness < 15){
+            Log.e("Cleanliness else ", cleanliness.toString())
+            poopOne.visibility = View.VISIBLE
+            poopTwo.visibility = View.VISIBLE
+            poop3.visibility = View.VISIBLE
+        }
+
+    }
+
     private fun setCatWalking() {
 
         var thisAnim = petSprite.drawable as AnimationDrawable
         thisAnim.start()
+    }
+
+    private fun petPet(){
+        thisPet.pet()
+        happinessProgress.progress = thisPet.getHappiness()
     }
 
 
