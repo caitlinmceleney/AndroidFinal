@@ -1,5 +1,7 @@
 package com.example.androidfinalproject.Models
 
+import android.util.Log
+
 class Pet (petType: String, thisPetName: String, thisOwnerName: String, thisHappiness:Int, thisHunger:Int, thisCleanliness:Int){
     private var happiness = thisHappiness
     private var hunger = thisHunger
@@ -34,13 +36,15 @@ class Pet (petType: String, thisPetName: String, thisOwnerName: String, thisHapp
         hunger = 100
     }
 
-    fun clean(){
-        cleanliness = 100
+    fun clean(amountToSet: Int){
+        cleanliness = amountToSet
     }
 
     fun pet(){
         happiness = 100
     }
+
+
 
 
     fun decrementHunger(){

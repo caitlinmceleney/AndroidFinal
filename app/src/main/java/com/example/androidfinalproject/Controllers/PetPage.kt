@@ -41,6 +41,15 @@ class PetPage : AppCompatActivity() {
         petSprite.setOnClickListener{
             petPet()
         }
+        poopOne.setOnClickListener{
+            setPoop()
+        }
+        poopTwo.setOnClickListener{
+            setPoop()
+        }
+        poop3.setOnClickListener{
+            setPoop()
+        }
 
         Timer().scheduleAtFixedRate(timerTask{
             thisPet.decrementHappiness()
@@ -50,9 +59,7 @@ class PetPage : AppCompatActivity() {
             hungerProgress.progress = thisPet.getHunger()
             Handler(Looper.getMainLooper()).post(Runnable { checkCleanliness() })
 
-            //cleanlinessProgress.progress = thisPet.getCleanliness()
-            Log.e("Timer went off", thisPet.getHappiness().toString())
-        }, 2000, 10000)
+        }, 2000, 1000)
 
         if(thisPet.getType() == "Cat"){
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
@@ -63,30 +70,59 @@ class PetPage : AppCompatActivity() {
         }
     }
 
-    private fun checkCleanliness(){
+    private fun setPoop(){
+        Log.e("hits set poop", thisPet.getCleanliness().toString())
+        var cleanliness = thisPet.getCleanliness()
+        if(cleanliness <= 15){
+            thisPet.clean(44)
+            Log.e("Cleanliness", thisPet.getCleanliness().toString())
+            checkCleanliness()
+            return
+        }
+        if(cleanliness<45){
+            thisPet.clean(69)
+            Log.e("Cleanliness", thisPet.getCleanliness().toString())
+            checkCleanliness()
+            return
+        }
 
+        if(cleanliness > 45 ){
+            thisPet.clean(100)
+            Log.e("Cleanliness", thisPet.getCleanliness().toString())
+            checkCleanliness()
+            return
+        }
+//        if(cleanliness>=70){
+//            thisPet.clean(100)
+//            Log.e("Cleanliness", thisPet.getCleanliness().toString())
+//            checkCleanliness()
+//            return
+//        }
+    }
+
+    private fun checkCleanliness(){
         var cleanliness = thisPet.getCleanliness()
 
         if(cleanliness>=70){
-            Log.e("Cleanliness in 100..70 ", cleanliness.toString())
+            //Log.e("Cleanliness in 100..70 ", cleanliness.toString())
             poopOne.visibility = View.INVISIBLE
             poopTwo.visibility = View.INVISIBLE
             poop3.visibility = View.INVISIBLE
         }
         if(cleanliness<=69 && cleanliness>=45){
-            Log.e("Cleanliness in 69..45 ", cleanliness.toString())
+            //Log.e("Cleanliness in 69..45 ", cleanliness.toString())
             poopOne.visibility = View.VISIBLE
             poopTwo.visibility = View.INVISIBLE
             poop3.visibility = View.INVISIBLE
         }
         if(cleanliness<45 && cleanliness >= 15){
-            Log.e("Cleanliness in 44..15", cleanliness.toString())
+            //Log.e("Cleanliness in 44..15", cleanliness.toString())
             poopOne.visibility = View.VISIBLE
             poopTwo.visibility = View.VISIBLE
             poop3.visibility = View.INVISIBLE
         }
         if(cleanliness < 15){
-            Log.e("Cleanliness else ", cleanliness.toString())
+            //Log.e("Cleanliness else ", cleanliness.toString())
             poopOne.visibility = View.VISIBLE
             poopTwo.visibility = View.VISIBLE
             poop3.visibility = View.VISIBLE
