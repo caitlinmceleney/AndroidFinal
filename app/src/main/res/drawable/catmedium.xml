@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/churt_1" android:duration="100"/>
+    <item android:drawable="@drawable/churt_2" android:duration="100"/>
+    <item android:drawable="@drawable/churt_3" android:duration="100"/>
+    <item android:drawable="@drawable/churt_4" android:duration="100"/>
+    <item android:drawable="@drawable/churt_5" android:duration="100"/>
+    <item android:drawable="@drawable/churt_6" android:duration="100"/>
+    <item android:drawable="@drawable/churt_7" android:duration="100"/>
+    <item android:drawable="@drawable/churt_8" android:duration="100"/>
+    <item android:drawable="@drawable/churt_9" android:duration="100"/>
+    <item android:drawable="@drawable/churt_10" android:duration="100"/>
+
+</animation-list>

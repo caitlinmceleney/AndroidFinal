@@ -38,6 +38,15 @@ class PetPage : AppCompatActivity() {
         happinessProgress.progress = thisPet.getHappiness()
         hungerProgress.progress = thisPet.getHunger()
         checkCleanliness()
+
+        if(thisPet.getType() == "Cat"){
+//            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
+            //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
+            setCatWalking()
+        }else if (thisPet.getType() == "Dog"){
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
+            setDogWalking()
+        }
         petSprite.setOnClickListener{
             petPet()
         }
@@ -51,22 +60,33 @@ class PetPage : AppCompatActivity() {
             setPoop()
         }
 
+
+
         Timer().scheduleAtFixedRate(timerTask{
             thisPet.decrementHappiness()
             thisPet.decrementCleanliness()
             thisPet.decrementHunger()
+            thisPet.calculateWellBeing()
             happinessProgress.progress = thisPet.getHappiness()
             hungerProgress.progress = thisPet.getHunger()
-            Handler(Looper.getMainLooper()).post(Runnable { checkCleanliness() })
+            spriteWrapper()
+            Handler(Looper.getMainLooper()).post(Runnable{checkCleanliness()})
             myDb.update(thisPet.getHappiness(), thisPet.getHunger(), thisPet.getCleanliness(), thisPet.getOwnerName(), thisPet.getName())
+
+
         }, 2000, 1000)
 
+
+    }
+
+    private fun spriteWrapper(){
+        Log.e("Sprite Wrapper", thisPet.getType())
         if(thisPet.getType() == "Cat"){
-            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
+            //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
             //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
-            setCatWalking()
+            Handler(Looper.getMainLooper()).post(Runnable{setCatWalking()})
         }else if (thisPet.getType() == "Dog"){
-            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
+            //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
             setDogWalking()
         }
     }
@@ -74,24 +94,24 @@ class PetPage : AppCompatActivity() {
 
 
     private fun setPoop(){
-        Log.e("hits set poop", thisPet.getCleanliness().toString())
+        //Log.e("hits set poop", thisPet.getCleanliness().toString())
         var cleanliness = thisPet.getCleanliness()
         if(cleanliness <= 15){
             thisPet.clean(44)
-            Log.e("Cleanliness", thisPet.getCleanliness().toString())
+            //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
             return
         }
         if(cleanliness<45){
             thisPet.clean(69)
-            Log.e("Cleanliness", thisPet.getCleanliness().toString())
+            //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
             return
         }
 
         if(cleanliness > 45 ){
             thisPet.clean(100)
-            Log.e("Cleanliness", thisPet.getCleanliness().toString())
+            //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
             return
         }
@@ -134,9 +154,27 @@ class PetPage : AppCompatActivity() {
     }
 
     private fun setCatWalking() {
+        //Log.e("hits set cat walking", thisPet.getWellBeingLevel())
+        if(thisPet.getWellBeingLevel() == "high"){
+            Log.e("high", thisPet.getWellBeingLevel())
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
+            var thisAnim = petSprite.drawable as AnimationDrawable
+            thisAnim.start()
+        }
+        if(thisPet.getWellBeingLevel() == "medium"){
+            Log.e("medium", thisPet.getWellBeingLevel())
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.catmedium))
+            var thisAnim = petSprite.drawable as AnimationDrawable
+            thisAnim.start()
 
-        var thisAnim = petSprite.drawable as AnimationDrawable
-        thisAnim.start()
+        }
+        if(thisPet.getWellBeingLevel()=="low"){
+            Log.e("low", thisPet.getWellBeingLevel())
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.catlow))
+            var thisAnim = petSprite.drawable as AnimationDrawable
+            thisAnim.start()
+        }
+
     }
     private fun setDogWalking() {
         var thisAnim = petSprite.drawable as AnimationDrawable
@@ -146,6 +184,10 @@ class PetPage : AppCompatActivity() {
     private fun petPet(){
         thisPet.pet()
         happinessProgress.progress = thisPet.getHappiness()
+    }
+
+    fun feedPet(view: View) {
+        thisPet.feed()
     }
 
 
