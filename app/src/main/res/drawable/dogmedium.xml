@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/dhurt_1" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_2" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_3" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_4" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_5" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_6" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_7" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_8" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_9" android:duration="100"/>
+    <item android:drawable="@drawable/dhurt_10" android:duration="100"/>
+
+    </animation-list>

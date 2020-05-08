@@ -44,7 +44,7 @@ class PetPage : AppCompatActivity() {
             //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
             setCatWalking()
         }else if (thisPet.getType() == "Dog"){
-            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
+
             setDogWalking()
         }
         petSprite.setOnClickListener{
@@ -87,7 +87,7 @@ class PetPage : AppCompatActivity() {
             Handler(Looper.getMainLooper()).post(Runnable{setCatWalking()})
         }else if (thisPet.getType() == "Dog"){
             //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
-            setDogWalking()
+            Handler(Looper.getMainLooper()).post(Runnable{setDogWalking()})
         }
     }
 
@@ -100,12 +100,14 @@ class PetPage : AppCompatActivity() {
             thisPet.clean(44)
             //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
+            spriteWrapper()
             return
         }
         if(cleanliness<45){
             thisPet.clean(69)
             //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
+            spriteWrapper()
             return
         }
 
@@ -113,6 +115,7 @@ class PetPage : AppCompatActivity() {
             thisPet.clean(100)
             //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
+            spriteWrapper()
             return
         }
 //        if(cleanliness>=70){
@@ -150,26 +153,23 @@ class PetPage : AppCompatActivity() {
             poopTwo.visibility = View.VISIBLE
             poop3.visibility = View.VISIBLE
         }
+        spriteWrapper()
 
     }
 
     private fun setCatWalking() {
-        //Log.e("hits set cat walking", thisPet.getWellBeingLevel())
         if(thisPet.getWellBeingLevel() == "high"){
-            Log.e("high", thisPet.getWellBeingLevel())
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
             var thisAnim = petSprite.drawable as AnimationDrawable
             thisAnim.start()
         }
         if(thisPet.getWellBeingLevel() == "medium"){
-            Log.e("medium", thisPet.getWellBeingLevel())
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.catmedium))
             var thisAnim = petSprite.drawable as AnimationDrawable
             thisAnim.start()
 
         }
         if(thisPet.getWellBeingLevel()=="low"){
-            Log.e("low", thisPet.getWellBeingLevel())
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.catlow))
             var thisAnim = petSprite.drawable as AnimationDrawable
             thisAnim.start()
@@ -177,6 +177,24 @@ class PetPage : AppCompatActivity() {
 
     }
     private fun setDogWalking() {
+        if(thisPet.getWellBeingLevel() == "high"){
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
+            var thisAnim = petSprite.drawable as AnimationDrawable
+            thisAnim.start()
+        }
+        if(thisPet.getWellBeingLevel() == "medium"){
+            Log.e("medium", thisPet.getWellBeingLevel())
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.dogmedium))
+            var thisAnim = petSprite.drawable as AnimationDrawable
+            thisAnim.start()
+
+        }
+        if(thisPet.getWellBeingLevel()=="low"){
+            Log.e("low", thisPet.getWellBeingLevel())
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.doglow))
+            var thisAnim = petSprite.drawable as AnimationDrawable
+            thisAnim.start()
+        }
         var thisAnim = petSprite.drawable as AnimationDrawable
         thisAnim.start()
     }
@@ -184,10 +202,12 @@ class PetPage : AppCompatActivity() {
     private fun petPet(){
         thisPet.pet()
         happinessProgress.progress = thisPet.getHappiness()
+        spriteWrapper()
     }
 
     fun feedPet(view: View) {
         thisPet.feed()
+        spriteWrapper()
     }
 
 
