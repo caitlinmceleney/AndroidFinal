@@ -9,5 +9,6 @@
     <item android:drawable="@drawable/cwalk_7" android:duration="100"/>
     <item android:drawable="@drawable/cwalk_8" android:duration="100"/>
     <item android:drawable="@drawable/cwalk_9" android:duration="100"/>
+    <item android:drawable="@drawable/cwalk_10" android:duration="100"/>
 
 </animation-list>

@@ -58,7 +58,7 @@ class PetPage : AppCompatActivity() {
             happinessProgress.progress = thisPet.getHappiness()
             hungerProgress.progress = thisPet.getHunger()
             Handler(Looper.getMainLooper()).post(Runnable { checkCleanliness() })
-
+            myDb.update(thisPet.getHappiness(), thisPet.getHunger(), thisPet.getCleanliness(), thisPet.getOwnerName(), thisPet.getName())
         }, 2000, 1000)
 
         if(thisPet.getType() == "Cat"){
@@ -66,9 +66,12 @@ class PetPage : AppCompatActivity() {
             //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
             setCatWalking()
         }else if (thisPet.getType() == "Dog"){
-            petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_dog_btn))
+            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
+            setDogWalking()
         }
     }
+
+
 
     private fun setPoop(){
         Log.e("hits set poop", thisPet.getCleanliness().toString())
@@ -132,6 +135,10 @@ class PetPage : AppCompatActivity() {
 
     private fun setCatWalking() {
 
+        var thisAnim = petSprite.drawable as AnimationDrawable
+        thisAnim.start()
+    }
+    private fun setDogWalking() {
         var thisAnim = petSprite.drawable as AnimationDrawable
         thisAnim.start()
     }
