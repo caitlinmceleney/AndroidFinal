@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.androidfinalproject.Models.User
 import com.example.androidfinalproject.R
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.NullPointerException
+import java.sql.Types.NULL
 
 
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +28,9 @@ var successfulLogin = true
         setContentView(R.layout.activity_main)
         val myDb= UserDatabaseManager(applicationContext)
         myDb.writableDatabase
+        username = ""
+        usernameTxt.text.clear()
+        passwordTxt.text.clear()
 //        if(isLoggedIn){
 //            var username = prefs.getString("username",username)
 //            val myIntent = Intent(applicationContext, PetPage::class.java)
@@ -33,7 +38,14 @@ var successfulLogin = true
 //            startActivity(myIntent)
 //            return;
 //        }
-//    updateView()
+    updateView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        username = ""
+        usernameTxt.text.clear()
+        passwordTxt.text.clear()
     }
 
 
@@ -41,11 +53,12 @@ var successfulLogin = true
         override fun doInBackground(vararg p0: User) {
             val myDb= UserDatabaseManager(applicationContext)
             myDb.writableDatabase
+//            while(myDb == NULL){
+//
+//            }
             username = p0[0].username
 
-            while(username == ""){
 
-            }
             if(!myDb.loginCheck(p0[0])){
                 successfulLogin = false;
             }
@@ -94,18 +107,19 @@ var successfulLogin = true
     fun loginUser(view: View) {
         var loginUser = User(usernameTxt.text.toString(), passwordTxt.text.toString())
         var myAsync = loginAsync()
+        Log.e("hits login", loginUser.toString())
         myAsync.execute(loginUser)
     }
 
-//    fun updateView():Unit
-//    {
-//        checkusers.text=""
-//        val myDb= UserDatabaseManager(applicationContext)
-//        myDb.writableDatabase
-//        val listToDispay=myDb.selectAll()
-//        for(i in listToDispay)
-//        {
-//            checkusers.append("id: ${i.username}  name: ${i.password}\n")
-//        }
-//    }
+    fun updateView():Unit
+    {
+        checkusers.text=""
+        val myDb= UserDatabaseManager(applicationContext)
+        myDb.writableDatabase
+        val listToDispay=myDb.selectAll()
+        for(i in listToDispay)
+        {
+           // checkusers.append("id: ${i.username}  name: ${i.password}\n")
+        }
+    }
 }

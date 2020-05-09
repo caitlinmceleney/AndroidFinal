@@ -7,10 +7,21 @@
     tools:context=".Controllers.LoginActivity">
 
     <EditText
+        android:id="@+id/passwordTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/loginBtn"
+        app:layout_constraintStart_toStartOf="@+id/usernameTxt" />
+
+    <EditText
         android:id="@+id/usernameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
+        android:layout_marginBottom="61dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -18,36 +29,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/passwordTxt"
+    <Button
+        android:id="@+id/registerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="43dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/loginBtn"
-        app:layout_constraintStart_toStartOf="@+id/usernameTxt" />
+        android:layout_marginBottom="196dp"
+        android:onClick="registerUser"
+        android:text="No Account? Register!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="40dp"
         android:onClick="loginUser"
         android:text="Log In"
         app:layout_constraintBottom_toTopOf="@+id/registerBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/registerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
-        android:onClick="registerUser"
-        android:text="No Account? Register!"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
