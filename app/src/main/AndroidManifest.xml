@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.androidfinalproject">
 
     <application
@@ -8,11 +9,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Controllers.PetPickerActivity"></activity>
-        <activity android:name=".Controllers.PetPage" />
-        <activity android:name=".Controllers.RegisterUserActivity" />
-        <activity android:name=".Controllers.LoginActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="LockedOrientationActivity">
+        <activity android:name=".Controllers.PetPickerActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Controllers.PetPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Controllers.RegisterUserActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Controllers.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

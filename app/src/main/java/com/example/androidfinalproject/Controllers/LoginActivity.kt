@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,8 @@ var successfulLogin = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val myDb= UserDatabaseManager(applicationContext)
+        myDb.writableDatabase
 //        if(isLoggedIn){
 //            var username = prefs.getString("username",username)
 //            val myIntent = Intent(applicationContext, PetPage::class.java)
@@ -31,30 +33,24 @@ var successfulLogin = true
 //            startActivity(myIntent)
 //            return;
 //        }
-//        updateView()
+//    updateView()
     }
 
-    override fun onResume()
-    {
-        super.onResume()
-//        if(isLoggedIn){
-//            var username = prefs.getString("username",username)
-//            val myIntent = Intent(applicationContext, PetPage::class.java)
-//            myIntent.putExtra("Username", username)
-//            startActivity(myIntent)
-//
-//        }
-
-    }
 
     inner class loginAsync: AsyncTask<User, Unit, Unit>() {
         override fun doInBackground(vararg p0: User) {
             val myDb= UserDatabaseManager(applicationContext)
             myDb.writableDatabase
+            username = p0[0].username
+
+            while(username == ""){
+
+            }
             if(!myDb.loginCheck(p0[0])){
                 successfulLogin = false;
             }
-            username = p0[0].username
+
+
             return
         }
 
