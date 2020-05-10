@@ -19,6 +19,7 @@ import kotlin.concurrent.timerTask
 class PetPage : AppCompatActivity() {
     var username = ""
     var thisPet = Pet("", "NULL", "NULL", 0 , 0,0)
+    var thisPetWellBeing = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,6 +159,10 @@ class PetPage : AppCompatActivity() {
     }
 
     private fun setCatWalking() {
+        if (thisPet.getWellBeingLevel() == thisPetWellBeing){
+            return
+        }
+        thisPetWellBeing = thisPet.getWellBeingLevel()
         if(thisPet.getWellBeingLevel() == "high"){
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
             var thisAnim = petSprite.drawable as AnimationDrawable
@@ -177,6 +182,10 @@ class PetPage : AppCompatActivity() {
 
     }
     private fun setDogWalking() {
+        if (thisPet.getWellBeingLevel() == thisPetWellBeing){
+            return
+        }
+        thisPetWellBeing = thisPet.getWellBeingLevel()
         if(thisPet.getWellBeingLevel() == "high"){
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
             var thisAnim = petSprite.drawable as AnimationDrawable

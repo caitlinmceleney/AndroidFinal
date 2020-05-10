@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ddead_1" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_2" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_3" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_4" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_5" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_6" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_7" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_8" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_9" android:duration="100"/>
-    <item android:drawable="@drawable/ddead_10" android:duration="100"/>
+    <item android:drawable="@drawable/ddead_1" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_2" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_3" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_4" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_5" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_6" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_7" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_8" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_9" android:duration="150"/>
+    <item android:drawable="@drawable/ddead_10" android:duration="300"/>
 
 </animation-list>
