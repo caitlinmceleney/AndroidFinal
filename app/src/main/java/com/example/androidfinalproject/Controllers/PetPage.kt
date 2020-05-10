@@ -80,7 +80,7 @@ class PetPage : AppCompatActivity() {
     }
 
     private fun spriteWrapper(){
-        Log.e("Sprite Wrapper", thisPet.getType())
+        //Log.e("Sprite Wrapper", thisPet.getType())
         if(thisPet.getType() == "Cat"){
             //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
             //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
@@ -208,6 +208,7 @@ class PetPage : AppCompatActivity() {
     fun feedPet(view: View) {
         thisPet.feed()
         spriteWrapper()
+        hungerProgress.progress = thisPet.getHunger()
     }
 
 

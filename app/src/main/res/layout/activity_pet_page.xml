@@ -7,134 +7,116 @@
     tools:context=".Controllers.PetPage">
 
     <ImageView
-        android:id="@+id/poop3"
+        android:id="@+id/poopTwo"
         android:layout_width="54dp"
         android:layout_height="52dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toBottomOf="@+id/poopTwo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/petSprite"
-        app:layout_constraintTop_toTopOf="@+id/petSprite"
+        app:layout_constraintTop_toBottomOf="@+id/poop3"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/poo" />
 
     <ImageView
-        android:id="@+id/poopTwo"
+        android:id="@+id/poop3"
         android:layout_width="54dp"
         android:layout_height="52dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="109dp"
-        android:layout_marginBottom="108dp"
-        app:layout_constraintBottom_toTopOf="@+id/happinessProgress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
-        app:layout_constraintStart_toEndOf="@+id/petSprite"
-        app:layout_constraintTop_toTopOf="@+id/petSprite"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/poo" />
-
-    <ProgressBar
-        android:id="@+id/happinessProgress"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="66dp"
-        android:layout_marginRight="66dp"
-        android:layout_marginBottom="254dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/hungerProgress" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/petSprite"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369"
+        app:srcCompat="@drawable/poo" />
+
+    <ImageView
+        android:id="@+id/poopOne"
+        android:layout_width="54dp"
+        android:layout_height="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/poopTwo"
+        app:layout_constraintTop_toBottomOf="@+id/poopTwo"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/poo" />
+
 
     <ImageView
         android:id="@+id/petSprite"
-        android:layout_width="0dp"
+        android:layout_width="238dp"
         android:layout_height="214dp"
-        android:layout_marginStart="83dp"
-        android:layout_marginLeft="83dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_marginBottom="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/happinessProgress"
-        app:layout_constraintEnd_toStartOf="@+id/poop3"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.373" />
 
     <TextView
         android:id="@+id/petNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/petSprite"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.81" />
 
     <ProgressBar
         android:id="@+id/hungerProgress"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="69dp"
-        android:layout_marginRight="69dp"
-        app:layout_constraintEnd_toStartOf="@+id/happinessProgress"
+        app:layout_constraintBottom_toTopOf="@id/textView"
+        app:layout_constraintEnd_toStartOf="@id/happinessProgress"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petSprite" />
+        app:layout_constraintTop_toBottomOf="@id/petSprite" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginRight="26dp"
         android:text="Hunger"
-        app:layout_constraintEnd_toEndOf="@+id/hungerProgress"
-        app:layout_constraintTop_toBottomOf="@+id/hungerProgress" />
+        app:layout_constraintBottom_toTopOf="@+id/feedBtn"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hungerProgress" />
+
+    <ProgressBar
+        android:id="@+id/happinessProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/hungerProgress"
+        app:layout_constraintTop_toBottomOf="@id/petSprite" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
         android:text="Happiness"
-        app:layout_constraintStart_toStartOf="@+id/happinessProgress"
-        app:layout_constraintTop_toBottomOf="@+id/happinessProgress" />
+        app:layout_constraintBottom_toTopOf="@+id/feedBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/textView"
+        app:layout_constraintTop_toBottomOf="@id/happinessProgress" />
 
     <Button
         android:id="@+id/feedBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="53dp"
         android:onClick="feedPet"
         android:text="Feed"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <ImageView
-        android:id="@+id/poopOne"
-        android:layout_width="54dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="@+id/petSprite"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
-        app:layout_constraintStart_toEndOf="@+id/petSprite"
-        app:layout_constraintTop_toBottomOf="@+id/poopTwo"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/poo" />
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/petSprite"
+        app:layout_constraintVertical_bias="0.405" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
