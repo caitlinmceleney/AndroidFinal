@@ -38,7 +38,7 @@ var successfulLogin = true
 //            startActivity(myIntent)
 //            return;
 //        }
-    updateView()
+    //updateView()
     }
 
     override fun onResume() {
@@ -53,17 +53,11 @@ var successfulLogin = true
         override fun doInBackground(vararg p0: User) {
             val myDb= UserDatabaseManager(applicationContext)
             myDb.writableDatabase
-//            while(myDb == NULL){
-//
-//            }
+            while(myDb.selectAll().isEmpty()){
+
+           }
             username = p0[0].username
-
-
-            if(!myDb.loginCheck(p0[0])){
-                successfulLogin = false;
-            }
-
-
+            successfulLogin = myDb.loginCheck(p0[0])
             return
         }
 
@@ -119,7 +113,7 @@ var successfulLogin = true
         val listToDispay=myDb.selectAll()
         for(i in listToDispay)
         {
-           // checkusers.append("id: ${i.username}  name: ${i.password}\n")
+            checkusers.append("id: ${i.username}  name: ${i.password}\n")
         }
     }
 }
