@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/heart" android:duration="100">
+        <size
+            android:width="0dp"
+            android:height="0dp"/>
+    </item>
+
+    <item android:drawable="@drawable/heart" android:duration="100">
+        <size
+            android:width="10dp"
+            android:height="10dp"/>
+    </item>
+
+    <item android:drawable="@drawable/heart" android:duration="100">
+        <size
+            android:width="20dp"
+            android:height="20dp"/>
+    </item>
+    <item android:drawable="@drawable/heart" android:duration="100">
+    <size
+        android:width="30dp"
+        android:height="30dp"/>
+</item>
+    <item android:drawable="@drawable/heart" android:duration="100">
+    <size
+        android:width="20dp"
+        android:height="20dp"/>
+</item>
+    <item android:drawable="@drawable/heart" android:duration="100">
+    <size
+        android:width="10dp"
+        android:height="10dp"/>
+</item>
+    <item android:drawable="@drawable/heart" android:duration="100">
+    <size
+        android:width="0dp"
+        android:height="0dp"/>
+</item>
+
+</animation-list>

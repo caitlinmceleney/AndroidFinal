@@ -101,7 +101,6 @@ var successfulLogin = true
     fun loginUser(view: View) {
         var loginUser = User(usernameTxt.text.toString(), passwordTxt.text.toString())
         var myAsync = loginAsync()
-        Log.e("hits login", loginUser.toString())
         myAsync.execute(loginUser)
     }
 

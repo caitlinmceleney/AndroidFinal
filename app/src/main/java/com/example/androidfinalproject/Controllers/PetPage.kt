@@ -1,6 +1,9 @@
 package com.example.androidfinalproject.Controllers
 
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -13,6 +16,7 @@ import com.example.androidfinalproject.Models.Pet
 import com.example.androidfinalproject.R
 import kotlinx.android.synthetic.main.activity_pet_page.*
 import java.util.*
+import kotlin.concurrent.schedule
 import kotlin.concurrent.timerTask
 
 
@@ -33,13 +37,15 @@ class PetPage : AppCompatActivity() {
         poopOne.visibility = View.INVISIBLE
         poopTwo.visibility = View.INVISIBLE
         poop3.visibility = View.INVISIBLE
-
+        heart.visibility = View.INVISIBLE
+        heart.scaleY = 0.0f
+        heart.scaleX = 0.0f
 
         petNameTxt.text = thisPet.getName()
         happinessProgress.progress = thisPet.getHappiness()
         hungerProgress.progress = thisPet.getHunger()
         checkCleanliness()
-
+        goOutsideTxt.text = "Go Outside!"
         if(thisPet.getType() == "Cat"){
 //            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
             //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
@@ -71,10 +77,14 @@ class PetPage : AppCompatActivity() {
             happinessProgress.progress = thisPet.getHappiness()
             hungerProgress.progress = thisPet.getHunger()
             spriteWrapper()
-            Handler(Looper.getMainLooper()).post(Runnable{checkCleanliness()})
             myDb.update(thisPet.getHappiness(), thisPet.getHunger(), thisPet.getCleanliness(), thisPet.getOwnerName(), thisPet.getName())
+            //Handler(Looper.getMainLooper()).post(Runnable{heartDisappear(heart)})
 
+        }, 2000, 5000)
 
+        Timer().scheduleAtFixedRate(timerTask{
+            spriteWrapper()
+            Handler(Looper.getMainLooper()).post(Runnable{checkCleanliness()})
         }, 2000, 1000)
 
 
@@ -82,13 +92,17 @@ class PetPage : AppCompatActivity() {
 
     private fun spriteWrapper(){
         //Log.e("Sprite Wrapper", thisPet.getType())
-        if(thisPet.getType() == "Cat"){
+        //var myThread =
+        if (thisPet.getType() == "Cat") {
             //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
             //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
+
             Handler(Looper.getMainLooper()).post(Runnable{setCatWalking()})
-        }else if (thisPet.getType() == "Dog"){
+        } else if (thisPet.getType() == "Dog") {
             //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
-            Handler(Looper.getMainLooper()).post(Runnable{setDogWalking()})
+
+            Handler(Looper.getMainLooper()).post(Runnable { setDogWalking() })
+
         }
     }
 
@@ -114,42 +128,31 @@ class PetPage : AppCompatActivity() {
 
         if(cleanliness > 45 ){
             thisPet.clean(100)
-            //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
             spriteWrapper()
             return
         }
-//        if(cleanliness>=70){
-//            thisPet.clean(100)
-//            Log.e("Cleanliness", thisPet.getCleanliness().toString())
-//            checkCleanliness()
-//            return
-//        }
     }
 
     private fun checkCleanliness(){
         var cleanliness = thisPet.getCleanliness()
 
         if(cleanliness>=70){
-            //Log.e("Cleanliness in 100..70 ", cleanliness.toString())
             poopOne.visibility = View.INVISIBLE
             poopTwo.visibility = View.INVISIBLE
             poop3.visibility = View.INVISIBLE
         }
         if(cleanliness<=69 && cleanliness>=45){
-            //Log.e("Cleanliness in 69..45 ", cleanliness.toString())
             poopOne.visibility = View.VISIBLE
             poopTwo.visibility = View.INVISIBLE
             poop3.visibility = View.INVISIBLE
         }
         if(cleanliness<45 && cleanliness >= 15){
-            //Log.e("Cleanliness in 44..15", cleanliness.toString())
             poopOne.visibility = View.VISIBLE
             poopTwo.visibility = View.VISIBLE
             poop3.visibility = View.INVISIBLE
         }
         if(cleanliness < 15){
-            //Log.e("Cleanliness else ", cleanliness.toString())
             poopOne.visibility = View.VISIBLE
             poopTwo.visibility = View.VISIBLE
             poop3.visibility = View.VISIBLE
@@ -192,14 +195,14 @@ class PetPage : AppCompatActivity() {
             thisAnim.start()
         }
         if(thisPet.getWellBeingLevel() == "medium"){
-            Log.e("medium", thisPet.getWellBeingLevel())
+
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.dogmedium))
             var thisAnim = petSprite.drawable as AnimationDrawable
             thisAnim.start()
 
         }
         if(thisPet.getWellBeingLevel()=="low"){
-            Log.e("low", thisPet.getWellBeingLevel())
+
             petSprite.setImageDrawable(resources.getDrawable(R.drawable.doglow))
             var thisAnim = petSprite.drawable as AnimationDrawable
             thisAnim.start()
@@ -208,9 +211,30 @@ class PetPage : AppCompatActivity() {
         thisAnim.start()
     }
 
+    fun heartAppear(view:View){
+        heart.visibility = View.VISIBLE
+        var animation = view.animate()
+        animation.scaleX(1.0f)
+        animation.scaleY(1.0f)
+        animation.duration = 400
+        animation.start()
+        Handler(Looper.myLooper()).postDelayed(Runnable{heartDisappear(heart)}, 400)
+
+
+    }
+    fun heartDisappear(view:View){
+        var animation = view.animate()
+        animation.scaleY(0.0f)
+        animation.scaleX(0.0f)
+        animation.duration = 400
+        animation.start()
+        //view.animate().scaleX(0.0f).scaleY(0.0f).setDuration(400).setStartDelay(500).start()
+    }
+
     private fun petPet(){
         thisPet.pet()
         happinessProgress.progress = thisPet.getHappiness()
+        Handler(Looper.getMainLooper()).post(Runnable{heartAppear(heart)})
         spriteWrapper()
     }
 
@@ -218,6 +242,19 @@ class PetPage : AppCompatActivity() {
         thisPet.feed()
         spriteWrapper()
         hungerProgress.progress = thisPet.getHunger()
+    }
+
+    fun changeBackground(view: View) {
+        if(goOutsideTxt.text == "Go Outside!"){
+            backgroundView.setImageDrawable(resources.getDrawable(R.drawable.outside_background))
+            goOutsideTxt.text = "Go Back Inside!"
+            return
+        }
+        if(goOutsideTxt.text.toString() == "Go Back Inside!"){
+            goOutsideTxt.text = "Go Outside!"
+            backgroundView.setImageDrawable(resources.getDrawable(R.drawable.background))
+            return
+        }
     }
 
 
