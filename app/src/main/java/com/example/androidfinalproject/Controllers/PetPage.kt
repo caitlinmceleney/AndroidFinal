@@ -75,8 +75,10 @@ class PetPage : AppCompatActivity() {
             thisPet.calculateWellBeing()
             happinessProgress.progress = thisPet.getHappiness()
             hungerProgress.progress = thisPet.getHunger()
-            spriteWrapper()
+            //spriteWrapper()
+            //Handler(Looper.getMainLooper()).post(Runnable{checkCleanliness()})
             myDb.update(thisPet.getHappiness(), thisPet.getHunger(), thisPet.getCleanliness(), thisPet.getOwnerName(), thisPet.getName())
+            //spriteWrapper()
             //Handler(Looper.getMainLooper()).post(Runnable{heartDisappear(heart)})
 
         }, 2000, 5000)
@@ -84,7 +86,8 @@ class PetPage : AppCompatActivity() {
         Timer().scheduleAtFixedRate(timerTask{
             spriteWrapper()
             Handler(Looper.getMainLooper()).post(Runnable{checkCleanliness()})
-        }, 2000, 1000)
+            spriteWrapper()
+        }, 0, 100)
 
 
     }
@@ -208,6 +211,7 @@ class PetPage : AppCompatActivity() {
         animation.duration = 400
         animation.start()
         Handler(Looper.myLooper()).postDelayed(Runnable{heartDisappear(heart)}, 500)
+        spriteWrapper()
 
 
     }
@@ -217,6 +221,7 @@ class PetPage : AppCompatActivity() {
         animation.scaleX(0.0f)
         animation.duration = 400
         animation.start()
+        spriteWrapper()
     }
 
     private fun petPet(){
@@ -243,6 +248,7 @@ class PetPage : AppCompatActivity() {
             backgroundView.setImageDrawable(resources.getDrawable(R.drawable.background))
             return
         }
+        spriteWrapper()
     }
 
 

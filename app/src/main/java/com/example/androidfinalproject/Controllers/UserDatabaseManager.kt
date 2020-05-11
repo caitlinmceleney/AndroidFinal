@@ -30,6 +30,7 @@ class UserDatabaseManager(context: Context):
 
     fun insert(userToInsert: User){
         val db = this.writableDatabase
+
         val insertString = "INSERT INTO $TABLE_USER VALUES ('${userToInsert.username}', '${userToInsert.password}')"
         db.execSQL(insertString)
     }
@@ -63,6 +64,7 @@ class UserDatabaseManager(context: Context):
         val db = this.writableDatabase
         var toReturn= ArrayList<User>()
         var cursor=db.rawQuery(sqlQuery, null);
+
         while(cursor.moveToNext())
         {
             toReturn.add(User(cursor.getString(0), cursor.getString(1)))
