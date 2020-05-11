@@ -19,10 +19,6 @@ import java.sql.Types.NULL
 class LoginActivity : AppCompatActivity() {
 var successfulLogin = true
     var username = ""
-//    var prefs = getSharedPreferences("name", MODE_PRIVATE);
-//    var isLoggedIn = false
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,14 +27,6 @@ var successfulLogin = true
         username = ""
         usernameTxt.text.clear()
         passwordTxt.text.clear()
-//        if(isLoggedIn){
-//            var username = prefs.getString("username",username)
-//            val myIntent = Intent(applicationContext, PetPage::class.java)
-//            myIntent.putExtra("Username", username)
-//            startActivity(myIntent)
-//            return;
-//        }
-    //updateView()
     }
 
     override fun onResume() {
@@ -70,11 +58,6 @@ var successfulLogin = true
             }else{
                 val petDb = PetDatabaseManager(applicationContext)
                 if(petDb.hasPet(username)){
-//                    val editor =
-//                        getSharedPreferences("name", Context.MODE_PRIVATE).edit()
-//                    editor.putString("username", username)
-//                    editor.putBoolean("isLoggedIn", true)
-//                    editor.apply()
                     val myIntent = Intent(applicationContext, PetPage::class.java)
                     myIntent.putExtra("Username", username)
                     startActivity(myIntent)

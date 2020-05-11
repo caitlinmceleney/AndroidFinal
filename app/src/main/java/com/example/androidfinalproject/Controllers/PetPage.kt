@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.graphics.drawable.AnimationDrawable
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -47,8 +48,6 @@ class PetPage : AppCompatActivity() {
         checkCleanliness()
         goOutsideTxt.text = "Go Outside!"
         if(thisPet.getType() == "Cat"){
-//            petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
-            //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
             setCatWalking()
         }else if (thisPet.getType() == "Dog"){
 
@@ -91,16 +90,9 @@ class PetPage : AppCompatActivity() {
     }
 
     private fun spriteWrapper(){
-        //Log.e("Sprite Wrapper", thisPet.getType())
-        //var myThread =
         if (thisPet.getType() == "Cat") {
-            //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happycat))
-            //petSprite.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.new_cat_btn))
-
             Handler(Looper.getMainLooper()).post(Runnable{setCatWalking()})
         } else if (thisPet.getType() == "Dog") {
-            //petSprite.setImageDrawable(resources.getDrawable(R.drawable.happydog))
-
             Handler(Looper.getMainLooper()).post(Runnable { setDogWalking() })
 
         }
@@ -109,18 +101,15 @@ class PetPage : AppCompatActivity() {
 
 
     private fun setPoop(){
-        //Log.e("hits set poop", thisPet.getCleanliness().toString())
         var cleanliness = thisPet.getCleanliness()
         if(cleanliness <= 15){
             thisPet.clean(44)
-            //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
             spriteWrapper()
             return
         }
         if(cleanliness<45){
             thisPet.clean(69)
-            //Log.e("Cleanliness", thisPet.getCleanliness().toString())
             checkCleanliness()
             spriteWrapper()
             return
@@ -218,7 +207,7 @@ class PetPage : AppCompatActivity() {
         animation.scaleY(1.0f)
         animation.duration = 400
         animation.start()
-        Handler(Looper.myLooper()).postDelayed(Runnable{heartDisappear(heart)}, 400)
+        Handler(Looper.myLooper()).postDelayed(Runnable{heartDisappear(heart)}, 500)
 
 
     }
@@ -228,7 +217,6 @@ class PetPage : AppCompatActivity() {
         animation.scaleX(0.0f)
         animation.duration = 400
         animation.start()
-        //view.animate().scaleX(0.0f).scaleY(0.0f).setDuration(400).setStartDelay(500).start()
     }
 
     private fun petPet(){

@@ -17,7 +17,6 @@ val DEFAULTLEVELS = 100
 class PetDatabaseManager(context: Context):
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
-        // If you change the database schema, you must increment the database version.
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "pets.db"
     }
